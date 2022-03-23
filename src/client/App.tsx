@@ -1,72 +1,54 @@
-import * as React from 'react';
-import { useState, useEffect } from 'react';
+import * as React from "react";
+import { useState, useEffect } from "react";
 
-/* HOOK REACT EXAMPLE */
 const App = (props: AppProps) => {
-	const [greeting, setGreeting] = useState<string>('');
+  const [pokemonList, setPokemonList] = useState<PokemonData[]>([]);
 
-	useEffect(() => {
-		async function getGreeting() {
-			try {
-				const res = await fetch('/api/hello');
-				const greeting = await res.json();
-				setGreeting(greeting);
-			} catch (error) {
-				console.log(error);
-			}
-		}
-		getGreeting();
-	}, []);
+  interface PokemonData {
+    name: string;
+    url: string;
+    id: number;
+    img?: string; // https://stackoverflow.com/questions/41791933/in-typescript-what-is-the-type-of-image
+  }
 
-	return (
-		<main className="container my-5">
-			<h1 className="text-primary text-center">Hello {greeting}!</h1>
-			<h1 className="text-secondary text-center">Hello {greeting}!</h1>
-			<h1 className="text-success text-center">Hello {greeting}!</h1>
-			<h1 className="text-info text-center">Hello {greeting}!</h1>
-			<h1 className="text-warning text-center">Hello {greeting}!</h1>
-			<h1 className="text-danger text-center">Hello {greeting}!</h1>
-			<h1 className="text-light text-center">Hello {greeting}!</h1>
-			<h1 className="text-dark text-center">Hello {greeting}!</h1>
+  useEffect(() => {
+    async function getPokemon() {
+      try {
+        const res = await fetch("https://pokeapi.co/api/v2/pokemon/?limit=898&offset=0");
+        const data = await res.json(); // data.results is an array of pokemon objects
+        let tempPokemonArray: PokemonData[] = [];
+        data.results.map((item) => tempPokemonArray.push(item));
+        setPokemonList(tempPokemonArray);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    getPokemon();
+  }, []);
 
-		</main>
-	);
+  if (!pokemonList) {
+    return (
+      <main className="container my-5">
+        <div>Loading...</div>
+      </main>
+    );
+  }
+
+  return (
+    <main className="container my-5">
+      <h1 className="text-primary text-center">Pokedex!</h1>
+      <div className="d-flex flex-wrap">
+        {pokemonList.map((pokemon) => (
+          <div key={pokemon.name} className="card ">
+            <div className="card title">{pokemon.name}</div>
+            <button className="btn btn-primary">link</button>
+          </div>
+        ))}
+      </div>
+    </main>
+  );
 };
 
 interface AppProps {}
-
-/* CLASS REACT EXAMPLE */
-// class App extends React.Component<IAppProps, IAppState> {
-// 	constructor(props: IAppProps) {
-// 		super(props);
-// 		this.state = {
-// 			name: null
-// 		};
-// 	}
-
-// 	async componentDidMount() {
-// 		try {
-// 			let r = await fetch('/api/hello');
-// 			let name = await r.json();
-// 			this.setState({ name });
-// 		} catch (error) {
-// 			console.log(error);
-// 		}
-// 	}
-
-// 	render() {
-// 		return (
-// 			<main className="container my-5">
-// 				<h1 className="text-primary text-center">Hello {this.state.name}!</h1>
-// 			</main>
-// 		);
-// 	}
-// }
-
-// export interface IAppProps {}
-
-// export interface IAppState {
-// 	name: string;
-// }
 
 export default App;
