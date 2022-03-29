@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useState, useEffect } from "react";
-import { BrowserRouter, Switch, Route, useHistory } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbar from "./Navbar";
 import Boxes from "./Boxes";
 import Milestones from "./Milestones";
@@ -40,20 +40,20 @@ const App = (props: AppProps) => {
   return (
     <BrowserRouter>
       <Navbar />
-      <Switch>
-        <Route exact path="/">
-          <Loginpage />
-        </Route>
-        <Route exact path="/boxes">
+      <Routes>
+        <Route path="/boxes">
           <Boxes />
         </Route>
-        <Route exact path="/pokedex">
-          <Pokedex pokemondata={pokemonList} />
+        <Route path="/pokedex">
+          <Pokedex />
         </Route>
-        <Route exact path="/milestones">
+        <Route path="/milestones">
           <Milestones />
         </Route>
-      </Switch>
+        <Route path="/">
+          <Loginpage />
+        </Route>
+      </Routes>
     </BrowserRouter>
   );
 };
@@ -61,3 +61,9 @@ const App = (props: AppProps) => {
 interface AppProps {}
 
 export default App;
+
+{
+  /* <Route path="/pokedex">
+          <Pokedex pokemondata={pokemonList} />
+        </Route> */
+}

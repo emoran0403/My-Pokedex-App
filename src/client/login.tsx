@@ -1,11 +1,15 @@
 import React from "react";
 import * as Types from "./interfaces";
 
+const Loginpage = () => {
+  return <div className="card bg-light shadow">this is Login</div>;
+};
 
-const Loginpage (props: Types.Loginprops) => {
-  
-    return (
-      <div className="card bg-light shadow">
+export default Loginpage;
+
+{
+  // props: Types.Loginprops
+  /* <div className="card bg-light shadow">
         <div className="card-body">
           <h5 className="card-title text-center">Please log in</h5>
           <input type="text" value={props.username} className="card-text" onChange={(e) => props.setUsernameChange(e)} />
@@ -13,9 +17,5 @@ const Loginpage (props: Types.Loginprops) => {
             Login
           </button>
         </div>
-      </div>
-    );
-  }
+      </div> */
 }
-
-export default Loginpage;
