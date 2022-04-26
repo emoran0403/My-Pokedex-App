@@ -1,11 +1,12 @@
-import React from "react";
-import * as Types from "./interfaces";
+//! dont use this for now lol
+// import React from "react";
+// import * as Types from "./types";
 
-const Pokedex = () => {
-  return <main className="container my-5">this is pokedex</main>;
-};
+// const Pokedex = () => {
+//   return <main className="container my-5">this is pokedex</main>;
+// };
 
-export default Pokedex;
+// export default Pokedex;
 
 // props: Types.PokedexProps
 

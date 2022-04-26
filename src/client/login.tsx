@@ -1,5 +1,5 @@
 import React from "react";
-import * as Types from "./interfaces";
+import * as Types from "./types";
 
 const Loginpage = () => {
   return <div className="card bg-light shadow">this is Login</div>;

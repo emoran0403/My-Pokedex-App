@@ -11,5 +11,9 @@ export interface Loginprops {
 export interface PokedexProps {
   pokemonList: Array<PokemonData>;
 }
-export interface BoxesProps {}
+export interface BoxesProps {
+  pokemonList: Array<PokemonData>;
+}
 export interface MilestonesProps {}
+
+export interface PokemonDetailsProps {}

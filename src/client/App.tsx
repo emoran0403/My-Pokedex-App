@@ -1,12 +1,13 @@
 import * as React from "react";
 import { useState, useEffect } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
 import Navbar from "./Navbar";
 import Boxes from "./Boxes";
 import Milestones from "./Milestones";
-import Pokedex from "./Pokedex";
-import * as Types from "../client/interfaces";
+// import Pokedex from "./Pokedex";
+import * as Types from "./types";
 import Loginpage from "./login";
+import PokemonDetails from "./PokemonDetails";
 
 const App = (props: AppProps) => {
   const [pokemonList, setPokemonList] = useState<Types.PokemonData[]>([]);
@@ -29,30 +30,15 @@ const App = (props: AppProps) => {
     getPokemon();
   }, []);
 
-  if (!pokemonList) {
-    return (
-      <main className="container my-5">
-        <div>Loading...</div>
-      </main>
-    );
-  }
-
   return (
     <BrowserRouter>
       <Navbar />
       <Routes>
-        <Route path="/boxes">
-          <Boxes />
-        </Route>
-        <Route path="/pokedex">
-          <Pokedex />
-        </Route>
-        <Route path="/milestones">
-          <Milestones />
-        </Route>
-        <Route path="/">
-          <Loginpage />
-        </Route>
+        <Route path="/boxes" element={<Boxes pokemonList={pokemonList} />}></Route>
+        {/* <Route path="/pokedex" element={<Pokedex />}></Route> */}
+        <Route path="/milestones" element={<Milestones />}></Route>
+        <Route path="/" element={<Loginpage />}></Route>
+        <Route path="/pokemondetails" element={<PokemonDetails />}></Route>
       </Routes>
     </BrowserRouter>
   );

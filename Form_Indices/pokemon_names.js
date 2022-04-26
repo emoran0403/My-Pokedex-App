@@ -72,7 +72,7 @@ for (i = 0; i < tableBodies.length; i++) {
   bigArray.push(pokemonArray);
 }
 
-//! console.log(bigArray);
+console.log(bigArray);
 
 let pinkForm = [];
 function formSorter(array, form) {
