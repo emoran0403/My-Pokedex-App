@@ -21,5 +21,7 @@ let gymLeadersByGen; // own pokemon that match gym leaders- geodude + onyx for b
 let eliteFourByGen; // same as gym leaders, but with elite 4 trainers
 let allEvolutionsByStone; // own all pokemon who evolve via evolution stone
 let allEvolutionsByTrade; // own all pokemon who evolve via trade
-let shinyPokemonByAmount; // own X shinies: 1, 5, 10
-let firstAmountByType; // own X pokemon of a certain type (dual type do count): 10, 20, 30
+let shinyPokemonByAmount; // own X shinies: 1, '5, '10
+let firstAmountByType; // own X pokemon of a certain type (dual type do count): 10, '20, '30
+
+let specialTextures = ["Alter", "Ashen", "Drowned", "Jump", "Molten Salt", "Pink", "Rainbow", "Specific", "Spirit", "Summer", "Strike", "Valencian", "Valentine", "Zombie"];
