@@ -30,27 +30,22 @@ for (i = 0; i < rawNames.length; i++) {
   arrayOfNames.push(name);
 }
 
-// console.log(arrayOfNames);
-
 // tableBoides is the HTML Collection of tbody elements, i.e. our pokemon form table
 // tableBodies.length will give us the length of the collection (which should be 273)
 let tableBodies = document.getElementsByTagName("tbody");
 
-// console.log(tableBodies);
-
+// this will collect arrays where [0] is the pokemon name, and [1-x] will be their forms if any
 let bigArray = [];
 
+// This pulls the pokemon's form from the html and puts them into an array
 for (i = 0; i < tableBodies.length; i++) {
   let name = rawNames[i].childNodes[0].innerHTML;
   let pokemonArray = [];
   pokemonArray.push(name);
   //we are inside all pokemon
-  // console.log(`pokemon ${i}`, tableBodies[i].children);
   for (j = 0; j < tableBodies[i].children.length; j++) {
     //we are inside all rows
-    // console.log(`pokemon ${i}`, tableBodies[i].children[j]);
     // this gets us just the index name column's inner text => the form names
-    // console.log(`pokemon ${i}`, tableBodies[i].children[j].lastElementChild.innerText);
 
     let formName = tableBodies[i].children[j].lastElementChild.innerText;
 
@@ -72,9 +67,53 @@ for (i = 0; i < tableBodies.length; i++) {
   bigArray.push(pokemonArray);
 }
 
-console.log(bigArray);
+// create arrays for each special form to hold the pokemon who appear in the given form
+let AlterForm = [];
+let AshenForm = [];
+let CreatorForm = [];
+let DrownedForm = [];
+let PinkForm = [];
+let RainbowForm = [];
+let SpiritForm = [];
+let SummerForm = [];
+let StrikeForm = [];
+let ValencianForm = [];
+let ValentineForm = [];
+let ZombieForm = [];
 
-let pinkForm = [];
+// collect the forms arrays into a larger array
+let formsArray = [
+  AlterForm,
+  AshenForm,
+  CreatorForm,
+  DrownedForm,
+  PinkForm,
+  RainbowForm,
+  SpiritForm,
+  SummerForm,
+  StrikeForm,
+  ValencianForm,
+  ValentineForm,
+  ZombieForm,
+];
+
+// lists the forms
+const formStrings = [
+  "Alter",
+  "Ashen",
+  "Creator",
+  "Drowned",
+  "Pink",
+  "Rainbow",
+  "Spirit",
+  "Summer",
+  "Strike",
+  "Valencian",
+  "Valentine",
+  "Zombie",
+];
+
+// pushes a pokemon name into the given form array if they take that form
 function formSorter(array, form) {
   for (i = 0; i < array.length; i++) {
     //this loop goes through the array of all pokemon
@@ -84,34 +123,26 @@ function formSorter(array, form) {
         //this loop goes through the array containing a particular pokemon's forms
         //need to check if the given form appears in the array, if it does, push the name => array[i][0] into a new array
         if (array[i][j] === form) {
-          pinkForm.push(array[i][0]);
+          formsArray[k].push(array[i][0]);
         }
       }
     }
   }
 }
 
-formSorter(bigArray, "Pink");
+// looks at the array of pokemon, and puts the name into the form array if that pokemon can be of that form
+for (k = 0; k < formStrings.length; k++) {
+  formSorter(bigArray, formStrings[k]);
+}
 
-// ! console.log(pinkForm);
-
-//!  check this out!
-// const formStrings = ["Pink", "Mega", "Spaghetti", ...];
-// formStrings.forEach(form => formSorter(bigArray, form));
-
-// console.log(forms);
-
-// for (k = 0; k < tableBodies[i].children[j].children.length; k++) {
-//we are inside all cells
-// console.log(`pokemon ${i}`, tableBodies[i].children[j].children[k].innerText);
-// }
-//
-
-// console.log(tableBodies); // all pokemon tables
-// console.log(tableBodies[0].children); // collection of table rows
-// console.log(tableBodies[0].children[0].children); // collection of table headers or table dividers
-// console.log(tableBodies[0].children[0].children[0].innerHTML); // the form name
-
-//for each pokemon, add the pokemon name to the first spot in the array
-//add the forms to the end of that array
-//when there are no new forms to add, add the pokemon array to the big array
+// console.log(formsArray);
+let allPokemonList = [];
+async function getAllPokemon() {
+  const res = await fetch("https://pokeapi.co/api/v2/pokemon/?limit=898&offset=0");
+  const data = await res.json();
+  for (l = 0; l < data.results.length; l++) {
+    allPokemonList.push(data.results[l].name);
+  }
+  console.log(allPokemonList);
+}
+getAllPokemon();

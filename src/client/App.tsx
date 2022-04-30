@@ -23,6 +23,7 @@ const App = (props: AppProps) => {
         let tempPokemonArray: Types.PokemonData[] = [];
         data.results.map((item) => tempPokemonArray.push(item));
         setPokemonList(tempPokemonArray);
+        console.log(pokemonList);
       } catch (error) {
         console.log(error);
       }
