@@ -68,6 +68,7 @@
 // }
 
 // create arrays for each special form to hold the pokemon who appear in the given form
+//inserted AlterForm
 let AlterForm = [
   "Aegislash",
   "Azumarill",
@@ -93,11 +94,13 @@ let AlterForm = [
   "Zoroark",
   "Zorua",
 ];
-
+//inserted AshenForm
 let AshenForm = ["Arcanine", "Centiskorch", "Dragonite", "Dustox", "Gengar", "Houndoom", "Hydreigon", "Roserade", "Talonflame", "Umbreon"];
 
+//inserted CreatorForm
 let CreatorForm = ["Dragonite", "Eevee", "Xerneas"];
 
+// inserted DrownedForm
 let DrownedForm = [
   "Claydol",
   "Finneon",
@@ -118,9 +121,8 @@ let DrownedForm = [
   "Starmie",
   "Tentacruel",
 ];
-
+// inserted PinkForm
 let PinkForm = [
-  ,
   "Amoonguss",
   "Beedrill",
   "Bellossom",
@@ -167,7 +169,7 @@ let PinkForm = [
   "Weepinbell",
   "Wooloo",
 ];
-
+// inserted RainbowForm
 let RainbowForm = [
   "Beautifly",
   "Crawdaunt",
@@ -183,7 +185,7 @@ let RainbowForm = [
   "Skarmory",
   "Weavile",
 ];
-
+// inserted SpiritForm
 let SpiritForm = [
   "Breloom",
   "Cresselia",
@@ -207,9 +209,10 @@ let SpiritForm = [
   "Umbreon",
   "Vaporeon",
 ];
-
+// inserted SummerForm
 let SummerForm = ["Deerling", "Electrode", "Lopunny", "Raichu", "Sawsbuck", "Snorlax"];
 
+// inserted StrikeForm
 let StrikeForm = [
   "Boltund",
   "Crobat",
@@ -235,6 +238,7 @@ let StrikeForm = [
   "Zubat",
 ];
 
+// inserted ValencianForm
 let ValencianForm = [
   "Bellossom",
   "Bellsprout",
@@ -263,8 +267,10 @@ let ValencianForm = [
   "Weepinbell",
 ];
 
+// inserted ValentineForm
 let ValentineForm = ["Gardevoir", "Koffing", "Spinda", "Weezing"];
 
+// inserted ZombieForm
 let ZombieForm = [
   "Arcanine",
   "Blastoise",
@@ -322,29 +328,31 @@ const formStrings = [
   "Zombie",
 ];
 
-// pushes a pokemon name into the given form array if they take that form
-function formSorter(array, form) {
-  for (i = 0; i < array.length; i++) {
-    //this loop goes through the array of all pokemon
-    if (array[i].length > 0) {
-      // if the pokemon has a form, its array length will be greater than 0
-      for (j = 0; j < array[i].length; j++) {
-        //this loop goes through the array containing a particular pokemon's forms
-        //need to check if the given form appears in the array, if it does, push the name => array[i][0] into a new array
-        if (array[i][j] === form) {
-          formsArray[k].push(array[i][0]);
-        }
-      }
-    }
-  }
-}
+// pushes a pokemon name into the given form array if they take that form - I used this to add the names to each form array
+// these names have been copied into the file
+
+// function formSorter(array, form) {
+//   for (i = 0; i < array.length; i++) {
+//     //this loop goes through the array of all pokemon
+//     if (array[i].length > 0) {
+//       // if the pokemon has a form, its array length will be greater than 0
+//       for (j = 0; j < array[i].length; j++) {
+//         //this loop goes through the array containing a particular pokemon's forms
+//         //need to check if the given form appears in the array, if it does, push the name => array[i][0] into a new array
+//         if (array[i][j] === form) {
+//           formsArray[k].push(array[i][0]);
+//         }
+//       }
+//     }
+//   }
+// }
 
 // looks at the array of pokemon, and puts the name into the form array if that pokemon can be of that form
-for (k = 0; k < formStrings.length; k++) {
-  formSorter(bigArray, formStrings[k]);
-}
+// for (k = 0; k < formStrings.length; k++) {
+//   formSorter(bigArray, formStrings[k]);
+// }
 
-console.log(formsArray);
+// console.log(formsArray);
 
 // let insertStatementArray = [];
 // for (i = 0; formsArray.length; i++) {
@@ -360,6 +368,21 @@ console.log(formsArray);
 // }
 
 // console.log(insertStatementArray);
+
+// here we generate new arrays from the formArrays, these new arrays contain insert statements
+
+// AlterFormInsert = AlterForm.map((pokemon) => {
+//   `INSERT INTO alterform (pokemonName) VALUES (${pokemon});`;
+// });
+
+// console.log(AlterFormInsert);
+
+let ZombieFormInsert = [];
+for (i = 0; i < ZombieForm.length; i++) {
+  ZombieFormInsert.push(`INSERT INTO zombieform (pokemonName) VALUES ('${ZombieForm[i]}');`);
+}
+
+console.log(ZombieFormInsert);
 
 // get a list of all pokemon and push them into an array
 
