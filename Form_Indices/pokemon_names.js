@@ -22,64 +22,273 @@
  *
  * with .lastElementChild, we can get the last child element, which is where our Index Name column exists
  */
-let rawNames = document.getElementsByTagName("span");
+// let rawNames = document.getElementsByTagName("span");
 
-let arrayOfNames = [];
-for (i = 0; i < rawNames.length; i++) {
-  let name = rawNames[i].childNodes[0].innerHTML;
-  arrayOfNames.push(name);
-}
+// let arrayOfNames = [];
+// for (i = 0; i < rawNames.length; i++) {
+//   let name = rawNames[i].childNodes[0].innerHTML;
+//   arrayOfNames.push(name);
+// }
 
 // tableBoides is the HTML Collection of tbody elements, i.e. our pokemon form table
 // tableBodies.length will give us the length of the collection (which should be 273)
-let tableBodies = document.getElementsByTagName("tbody");
+// let tableBodies = document.getElementsByTagName("tbody");
 
 // this will collect arrays where [0] is the pokemon name, and [1-x] will be their forms if any
-let bigArray = [];
+// let bigArray = [];
 
 // This pulls the pokemon's form from the html and puts them into an array
-for (i = 0; i < tableBodies.length; i++) {
-  let name = rawNames[i].childNodes[0].innerHTML;
-  let pokemonArray = [];
-  pokemonArray.push(name);
-  //we are inside all pokemon
-  for (j = 0; j < tableBodies[i].children.length; j++) {
-    //we are inside all rows
-    // this gets us just the index name column's inner text => the form names
+// for (i = 0; i < tableBodies.length; i++) {
+//   let name = rawNames[i].childNodes[0].innerHTML;
+//   let pokemonArray = [];
+//   pokemonArray.push(name);
+//   //we are inside all pokemon
+//   for (j = 0; j < tableBodies[i].children.length; j++) {
+//     //we are inside all rows
+//     // this gets us just the index name column's inner text => the form names
 
-    let formName = tableBodies[i].children[j].lastElementChild.innerText;
+//     let formName = tableBodies[i].children[j].lastElementChild.innerText;
 
-    if (
-      formName !== "Index Name" &&
-      formName !== "-" &&
-      formName !== "Mega" &&
-      formName !== "Index Number" &&
-      formName !== "0" &&
-      formName !== "1" &&
-      formName !== "2" &&
-      formName !== "3"
-    ) {
-      // only add form names for forms we can actually catch
-      pokemonArray.push(formName);
-      // show the array with the newly added name
-    }
-  }
-  bigArray.push(pokemonArray);
-}
+//     if (
+//       formName !== "Index Name" &&
+//       formName !== "-" &&
+//       formName !== "Mega" &&
+//       formName !== "Index Number" &&
+//       formName !== "0" &&
+//       formName !== "1" &&
+//       formName !== "2" &&
+//       formName !== "3"
+//     ) {
+//       // only add form names for forms we can actually catch
+//       pokemonArray.push(formName);
+//       // show the array with the newly added name
+//     }
+//   }
+//   bigArray.push(pokemonArray);
+// }
 
 // create arrays for each special form to hold the pokemon who appear in the given form
-let AlterForm = [];
-let AshenForm = [];
-let CreatorForm = [];
-let DrownedForm = [];
-let PinkForm = [];
-let RainbowForm = [];
-let SpiritForm = [];
-let SummerForm = [];
-let StrikeForm = [];
-let ValencianForm = [];
-let ValentineForm = [];
-let ZombieForm = [];
+let AlterForm = [
+  "Aegislash",
+  "Azumarill",
+  "Bagon",
+  "Baltoy",
+  "Claydol",
+  "Doublade",
+  "Froakie",
+  "Frogadier",
+  "Greninja",
+  "Honedge",
+  "Kecleon",
+  "Marill",
+  "Porygon",
+  "Porygon-Z",
+  "Porygon2",
+  "Pyukumuku",
+  "Rayquaza",
+  "Salamence",
+  "Shedinja",
+  "Shelgon",
+  "Volcarona",
+  "Zoroark",
+  "Zorua",
+];
+
+let AshenForm = ["Arcanine", "Centiskorch", "Dragonite", "Dustox", "Gengar", "Houndoom", "Hydreigon", "Roserade", "Talonflame", "Umbreon"];
+
+let CreatorForm = ["Dragonite", "Eevee", "Xerneas"];
+
+let DrownedForm = [
+  "Claydol",
+  "Finneon",
+  "Flygon",
+  "Gyarados",
+  "Kingdra",
+  "Lumineon",
+  "Lugia",
+  "Octillery",
+  "Omastar",
+  "Pikachu",
+  "Pyukumuku",
+  "Qwilfish",
+  "Rapidash",
+  "Relicanth",
+  "Remoraid",
+  "Sableye",
+  "Starmie",
+  "Tentacruel",
+];
+
+let PinkForm = [
+  ,
+  "Amoonguss",
+  "Beedrill",
+  "Bellossom",
+  "Bellsprout",
+  "Butterfree",
+  "Caterpie",
+  "Diglett",
+  "Dodrio",
+  "Doduo",
+  "Dubwool",
+  "Dugtrio",
+  "Exeggcute",
+  "Exeggutor",
+  "Gloom",
+  "Kakuna",
+  "Mankey",
+  "Mareep",
+  "Metapod",
+  "Misdreavus",
+  "Mismagius",
+  "Nidoking",
+  "Nidoqueen",
+  "Nidorina",
+  "Nidorino",
+  "Nidoran♂",
+  "Nidoran♀",
+  "Oddish",
+  "Paras",
+  "Parasect",
+  "Pidgeot",
+  "Pidgeotto",
+  "Pidgey",
+  "Primeape",
+  "Raticate",
+  "Rattata",
+  "Rhydon",
+  "Rhyhorn",
+  "Rhyperior",
+  "Venomoth",
+  "Venonat",
+  "Victreebel",
+  "Vileplume",
+  "Weedle",
+  "Weepinbell",
+  "Wooloo",
+];
+
+let RainbowForm = [
+  "Beautifly",
+  "Crawdaunt",
+  "Cresselia",
+  "Dustox",
+  "Feebas",
+  "Ho-Oh",
+  "Infernape",
+  "Kecleon",
+  "Milotic",
+  "Ponyta",
+  "Rapidash",
+  "Skarmory",
+  "Weavile",
+];
+
+let SpiritForm = [
+  "Breloom",
+  "Cresselia",
+  "Dragapult",
+  "Drakloak",
+  "Dreepy",
+  "Eevee",
+  "Espeon",
+  "Flareon",
+  "Glaceon",
+  "Jolteon",
+  "Leafeon",
+  "Mareanie",
+  "Milotic",
+  "Porygon2",
+  "Regieleki",
+  "Shroomish",
+  "Suicune",
+  "Sylveon",
+  "Toxapex",
+  "Umbreon",
+  "Vaporeon",
+];
+
+let SummerForm = ["Deerling", "Electrode", "Lopunny", "Raichu", "Sawsbuck", "Snorlax"];
+
+let StrikeForm = [
+  "Boltund",
+  "Crobat",
+  "Eevee",
+  "Electivire",
+  "Espeon",
+  "Gallade",
+  "Gardevoir",
+  "Golbat",
+  "Jolteon",
+  "Kirlia",
+  "Leafeon",
+  "Ninetales",
+  "Poliwrath",
+  "Ralts",
+  "Sneasel",
+  "Umbreon",
+  "Vaporeon",
+  "Vivillon",
+  "Vulpix",
+  "Weavile",
+  "Yamper",
+  "Zubat",
+];
+
+let ValencianForm = [
+  "Bellossom",
+  "Bellsprout",
+  "Blissey",
+  "Butterfree",
+  "Caterpie",
+  "Chansey",
+  "Gloom",
+  "Magikarp",
+  "Metapod",
+  "Nidoking",
+  "Nidoqueen",
+  "Nidorina",
+  "Nidorino",
+  "Nidoran♂",
+  "Nidoran♀",
+  "Oddish",
+  "Paras",
+  "Parasect",
+  "Poliwag",
+  "Raticate",
+  "Rattata",
+  "Shellder",
+  "Victreebel",
+  "Vileplume",
+  "Weepinbell",
+];
+
+let ValentineForm = ["Gardevoir", "Koffing", "Spinda", "Weezing"];
+
+let ZombieForm = [
+  "Arcanine",
+  "Blastoise",
+  "Blaziken",
+  "Charizard",
+  "Chesnaught",
+  "Delphox",
+  "Ditto",
+  "Emboar",
+  "Empoleon",
+  "Greninja",
+  "Greninja",
+  "Gyarados",
+  "Infernape",
+  "Meganium",
+  "Sableye",
+  "Samurott",
+  "Sceptile",
+  "Serperior",
+  "Swampert",
+  "Torterra",
+  "Typhlosion",
+  "Venusaur",
+];
 
 // collect the forms arrays into a larger array
 let formsArray = [
@@ -135,14 +344,32 @@ for (k = 0; k < formStrings.length; k++) {
   formSorter(bigArray, formStrings[k]);
 }
 
-// console.log(formsArray);
-let allPokemonList = [];
-async function getAllPokemon() {
-  const res = await fetch("https://pokeapi.co/api/v2/pokemon/?limit=898&offset=0");
-  const data = await res.json();
-  for (l = 0; l < data.results.length; l++) {
-    allPokemonList.push(data.results[l].name);
-  }
-  console.log(allPokemonList);
-}
-getAllPokemon();
+console.log(formsArray);
+
+// let insertStatementArray = [];
+// for (i = 0; formsArray.length; i++) {
+//   // go through the array of all forms
+//   let arrayByForm = [];
+//   for (j = 0; formsArray[i].length; j++) {
+//     // go through the form array
+//     // here we need to change the string containing the name into the mysql insert statement
+//     // INSERT INTO ${nameOfFormHere} (pokemonName) VALUES (${pokemonNameHere});
+//     arrayByForm.push(`INSERT INTO ${formStrings[i]} (pokemonName) VALUES (${formsArray[i][j]});`);
+//   }
+//   insertStatementArray.push(arrayByForm);
+// }
+
+// console.log(insertStatementArray);
+
+// get a list of all pokemon and push them into an array
+
+// let allPokemonList = [];
+// async function getAllPokemon() {
+//   const res = await fetch("https://pokeapi.co/api/v2/pokemon/?limit=898&offset=0");
+//   const data = await res.json();
+//   for (l = 0; l < data.results.length; l++) {
+//     allPokemonList.push(data.results[l].name);
+//   }
+//   console.log(allPokemonList);
+// }
+// getAllPokemon();
